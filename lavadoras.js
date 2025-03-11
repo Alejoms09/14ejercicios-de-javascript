@@ -1,26 +1,47 @@
-let tipolavadora = parseInt(prompt("Ingrese el tipo de lavadora que va a alquilar 1 o 2"))
-let cantidad = parseInt(prompt("Ingrese la cantidad de lavadoras que va alquilar"))
-let horas = parseInt(prompt("Ingrese la cantidad de horas que va alquilar las lavadoras"))
+function tipolavadora() {
+    return parseInt(prompt("Ingrese el tipo de lavadora que va a alquilar (1 o 2)"));
+  }
+  
+  function cantidad() {
+    return parseInt(prompt("Ingrese la cantidad de lavadoras que va alquilar"));
+  }
+  
+  function horas() {
+    return parseInt(prompt("Ingrese la cantidad de horas que va alquilar las lavadoras"));
+  }
+  
+  function costo(tipolavadora) {
+    let costo;
+    if (tipolavadora === 1) {
+      costo = 4000; // Lavadora grande
+    } else if (tipolavadora === 2) {
+      costo = 3000; // Lavadora pequeña
+    } else {
+      costo = 0; 
+    }
+    return costo;
+  }
+  
+  function costototal(tipolavadora, cantidad, horas) {
+    let costoLavadora = costo(tipolavadora);
+    let costototal = cantidad * horas * costoLavadora; 
+    
+    
+    if (cantidad > 3) {
+      costototal *= 0.97; 
+    }
+  
+    return costototal;
+  }
+  
 
-let costo;
+  let tipo = tipolavadora();
+  let cantidadLavadoras = cantidad();
+  let horasAlquiler = horas();
+  
 
-switch(tipolavadora){
-    case 1:
-        costo=4000 //lavadora grande
-        break;
-        case 2:
-            costo=3000 //lavadora pequeña
-            break;
-
-            default:
-                costo= 0 
-}
-
-let costototal = cantidad*horas*costo;
-
-if (cantidad > 3 ){
-
-    costototal*= 0.97
-}
-
-alert(`El costo total por alquilar ${cantidad} por lavadoras tipo ${tipolavadora} por ${horas} horas es de: ${costototal}.`)
+  let total = costototal(tipo, cantidadLavadoras, horasAlquiler);
+  
+  
+  alert(`El costo total por alquilar ${cantidadLavadoras} lavadoras tipo ${tipo} por ${horasAlquiler} horas es de: ${total}`);
+  
